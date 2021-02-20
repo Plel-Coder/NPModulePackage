@@ -93,7 +93,11 @@ class TanHalfPi(object):
             result.number=10**(result.index-result.log)
         result.array = [result.number,result.index]
         return result
+    def __str__(self):
+        return self.getex()
+    def __eq__(self,a):
+        return (self.number==a.number) and (self.index==a.index)
 if __name__ == "__main__":
     a=TanHalfPi([10])
     b=TanHalfPi([1000])
-    print((a**b).getex())
+    print(a**b)
