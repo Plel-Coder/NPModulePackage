@@ -1,8 +1,18 @@
 from decimal import Decimal,getcontext,Overflow
 import math as m
 import time
+#TanHalfPi([x])
+#x값을 형식으로 바꾸기
+#TanHalfPi([x,y])
+#x가 곱값
+#y가 지수값
+#a.getnum()
+#a의 숫자값을 decimal로 출력을시도
+#실패시 TanHalfPi형태로 출력
+#a.getex()
+#a를 지수형으로 출력
 getcontext().prec=100
-class exponential(object):
+class TanHalfPi(object):
     def __init__(self,array):
         if type(array[0])!=Decimal:
             array[0]=Decimal(array[0])
@@ -23,7 +33,9 @@ class exponential(object):
         try:
             return self.number * 10**Decimal(self.index)
         except Overflow:
-            return exponential([self.number,self.index])
+            print("경고:getnum()를 하기엔 수가 너무 큽니다. ")
+            print("값을 출력하려면 getex()를 쓰거나 연산자로 계산하세요.")
+            return TanHalfPi([self.number,self.index])
     def getex(self):
         result=str(self.number)+"E+"+str(Decimal(self.index)+1-1)
         return result
@@ -48,10 +60,10 @@ class exponential(object):
         return result
     def __mul__(self,a):
         result=self
-        if type(a)!=exponential:
-            a=exponential([a])
+        if type(a)!=TanHalfPi:
+            a=TanHalfPi([a])
         if a.getnum()==0:
-            result=exponential(0)
+            result=TanHalfPi(0)
         else:
             result.log+=a.log
             result.index=int(result.log)
@@ -82,6 +94,6 @@ class exponential(object):
         result.array = [result.number,result.index]
         return result
 if __name__ == "__main__":
-    a=exponential([10])
-    b=exponential([1000])
+    a=TanHalfPi([10])
+    b=TanHalfPi([1000])
     print((a**b).getex())
