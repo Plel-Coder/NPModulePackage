@@ -33,7 +33,7 @@ class TanHalfPi(object):
         try:
             return self.number * 10**Decimal(self.index)
         except Overflow:
-            print("TooBigNumberError")
+            print("TooBigNumberWarn")
             print("Too big number for  getnum()")
             print("Use getex() or use operator.")
             return TanHalfPi([self.number,self.index])
