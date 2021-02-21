@@ -2,10 +2,10 @@ from decimal import Decimal,getcontext,Overflow
 import math as m
 import time
 #TanHalfPi([x])
-#x값을 형식으로 바꾸기
+#turn x to type "TanHalfPi"
 #TanHalfPi([x,y])
-#x가 곱값
-#y가 지수값
+#x is int part
+#y is exp part
 #a.getnum()
 #a의 숫자값을 decimal로 출력을시도
 #실패시 TanHalfPi형태로 출력
@@ -33,8 +33,9 @@ class TanHalfPi(object):
         try:
             return self.number * 10**Decimal(self.index)
         except Overflow:
-            print("경고:getnum()를 하기엔 수가 너무 큽니다. ")
-            print("값을 출력하려면 getex()를 쓰거나 연산자로 계산하세요.")
+            print("TooBigNumberError")
+            print("Too big number for  getnum()")
+            print("Use getex() or use operator.")
             return TanHalfPi([self.number,self.index])
     def getex(self):
         result=str(self.number)+"E+"+str(Decimal(self.index)+1-1)
@@ -101,3 +102,4 @@ if __name__ == "__main__":
     a=TanHalfPi([10])
     b=TanHalfPi([1000])
     print(a**b)
+print(type(TanHalfPi([1000])))
